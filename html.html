@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div id="butdiv">
+    <div id="butdiv" style="display:inline-block; border: 5px; border-style: solid; border-color: white; outline: 2px; outline-color: brown; outline-style: solid;"> 
         <div id="row 1"></div>
         <div id="row 2"></div>
         <div id="row 3"></div>
@@ -20,7 +20,9 @@
         <div id="row 8"></div>
     </div>
     <div id="extrabuttons">
-        <button type="button" onclick="turnchange()">skipturn</button>
+        <button type="button" onclick="turnchange()" style="background-color: aqua; width: 100px; height: 40px;margin-left: 55px;">skipturn</button>
+        <button id="whitenum" type="button" style="outline: 2px solid brown; border: 4px solid white; width: 94px; height: 36px; background-color: aqua;">2</button>
+        <button id="blacknum" type="button" style="outline: 2px solid brown; border: 4px solid black; width: 94px; height: 36px; background-color: aqua;">2</button>
     </div>
     
 </body>

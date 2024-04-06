@@ -13,6 +13,8 @@ class board {
         // 8*8 place
         this.turnwhite = true
         this.hits = []
+        this.whitenum = 2
+        this.blacknum = 2
 
         for (var i = 1; i < 9; i++) {
             let last_div = document.getElementById("row " + i)
@@ -134,15 +136,25 @@ class board {
 
 
 
-
+                    let white = document.getElementById("whitenum")
+                    let black = document.getElementById("blacknum")
 
                     let sum = rq + lq + dq + uq + urq + ulq + drq + dlq
                     if (this.turnwhite && event.target.innerHTML == " " && ( sum > 0)) {
                         this.set_white(id, document.getElementById(id))
-                        this.turnwhite = false
+                        turnchange()
+                        this.whitenum += 1 + sum
+                        this.blacknum -= sum
+                        white.innerText = this.whitenum.toString()
+                        black.innerText = this.blacknum.toString()
                     } else if (event.target.innerHTML == " " && (sum > 0)) {
                         this.set_black(id, document.getElementById(id))
-                        this.turnwhite = true
+                        turnchange()
+                        this.blacknum += 1 + sum
+                        this.whitenum -= sum
+                        white.innerText = this.whitenum.toString()
+                        black.innerText = this.blacknum.toString()
+                        
                     }
 
                 })
@@ -317,7 +329,7 @@ class board {
     set_black(id, n) {
         n.innerHTML = "<svg height=\"45\" width=\"45\" xmlns=\"http://www.w3.org/2000/svg\"><circle r=\"18\" cx=\"19\" cy=\"20\" fill=\"black\" stroke=\"lightblue\" stroke-width=\"4px\"/></svg>"
         this.hits[id] = "b"
-    }
+        }
 
     set_white(id, n) {
         n.innerHTML = "<svg height=\"45\" width=\"45\" xmlns=\"http://www.w3.org/2000/svg\"><circle r=\"18\" cx=\"19\" cy=\"20\" fill=\"white\" stroke=\"lightblue\" stroke-width=\"4px\"/></svg>"
@@ -335,8 +347,14 @@ var b = new board()
 function turnchange(){
     if (b.turnwhite){
         b.turnwhite = false
+        let div = document.getElementById("butdiv")
+        div.style = "display:inline-block; border: 5px; border-style: solid; border-color: black; outline: 2px; outline-color: brown; outline-style: solid;"
+    
     }else{
         b.turnwhite = true
+        let div = document.getElementById("butdiv")
+        div.style = "display:inline-block; border: 5px; border-style: solid; border-color: white; outline: 2px; outline-color: brown; outline-style: solid;"
+    
     }
 }
 //console.log(document.getElementsByTagName("button"))
